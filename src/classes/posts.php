@@ -9,7 +9,10 @@ class posts{
     }
 
     public function getPostsByUser($intUserId){
-        $sql = "SELECT * FROM publicaciones WHERE autor_id = ?";
+        $sql = "SELECT a.*, b.*, DATE_FORMAT(a.creado_en, '%d-%m-%Y') as creado_en 
+                FROM publicaciones a
+                INNER JOIN usuarios b ON b.id = a.autor_id 
+                WHERE a.autor_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $intUserId);
         $stmt->execute();
