@@ -1,12 +1,9 @@
--- Crear base de datos si no existe con codificacion utf8mb4
 CREATE DATABASE IF NOT EXISTS blog
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_general_ci;
 
--- Usar la base de datos
 USE blog;
 
--- Crear tabla usuarios con codificacion utf8mb4
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -15,7 +12,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
--- Crear tabla publicaciones con codificacion utf8mb4
 CREATE TABLE IF NOT EXISTS publicaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
@@ -26,7 +22,6 @@ CREATE TABLE IF NOT EXISTS publicaciones (
     FOREIGN KEY (autor_id) REFERENCES usuarios(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
--- Insertar datos iniciales en usuarios
 INSERT INTO usuarios (nombre, email, contrasena) VALUES ('Admin', 'admin@prueba.com', 'adminpassword');
 
 INSERT INTO publicaciones (`id`,`titulo`,`contenido`,`img_url`,`autor_id`,`creado_en`) VALUES (1,'HTML','HTML es el lenguaje de marcado estandar utilizado para crear y estructurar paginas web. Sirve como la base fundamental de la web, ya que define la estructura y el contenido de una pagina mediante el uso de etiquetas y elementos. Estas etiquetas encapsulan diferentes partes del contenido como texto, imagenes, enlaces, y otros medios, permitiendo que los navegadores web rendericen la pagina de manera adecuada. HTML es un lenguaje declarativo, lo que significa que describe que contenido se muestra y en que orden, pero no especifica como debe verse o comportarse, ya que esto se gestiona por CSS y JavaScript, respectivamente. Con la evolucion hacia HTML5, el lenguaje ha incorporado nuevas capacidades, como soporte para multimedia, graficos mediante <canvas>, y APIs para manipulacion de datos, lo que lo hace mas poderoso y flexible para el desarrollo web moderno.','./img/html5.png',1,'2024-08-12 23:26:34');
